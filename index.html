@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sbongiseni Hlongwa - Professional Portfolio</title>
+    <title>Sbongiseni Hlongwa - Audit & Risk Management Professional</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -19,6 +19,7 @@
             --light-bg: #F8F9FA;
             --dark-text: #1a1a1a;
             --border-color: #E0E0E0;
+            --success-color: #27AE60;
         }
 
         body {
@@ -51,6 +52,7 @@
             text-decoration: none;
             font-weight: 600;
             transition: color 0.3s ease;
+            font-size: 0.95em;
         }
 
         nav a:hover {
@@ -77,6 +79,7 @@
             font-size: 1.3em;
             opacity: 0.95;
             font-weight: 300;
+            margin-bottom: 0.5em;
         }
 
         .header-subtitle {
@@ -86,9 +89,19 @@
             font-weight: 600;
         }
 
+        .header-stat {
+            display: inline-block;
+            margin: 1em 1.5em;
+            font-size: 0.95em;
+        }
+
+        .header-stat strong {
+            color: var(--secondary-color);
+        }
+
         /* Container */
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 2em;
         }
@@ -121,145 +134,249 @@
             background-color: var(--secondary-color);
         }
 
-        /* About Section */
-        #about p {
-            font-size: 1.05em;
-            line-height: 1.8;
-            color: #555;
-            background-color: white;
-            padding: 2em;
+        /* Professional Summary */
+        #summary {
+            background: linear-gradient(135deg, rgba(15, 58, 125, 0.05) 0%, rgba(27, 94, 117, 0.05) 100%);
+            padding: 3em !important;
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             border-left: 4px solid var(--secondary-color);
         }
 
+        #summary p {
+            font-size: 1.05em;
+            line-height: 1.9;
+            color: #444;
+            font-weight: 300;
+        }
+
         /* Experience Section */
-        .timeline {
+        .experience-container {
+            display: grid;
+            gap: 2.5em;
+        }
+
+        .experience-item {
+            background: white;
+            padding: 2.5em;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--secondary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1em;
+            flex-wrap: wrap;
+            gap: 1em;
+        }
+
+        .experience-item h3 {
+            color: var(--primary-color);
+            font-size: 1.4em;
+            margin: 0;
+        }
+
+        .experience-item .company {
+            color: var(--secondary-color);
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 0.3em;
+        }
+
+        .experience-item .duration {
+            background-color: #E8F4F8;
+            color: var(--accent-color);
+            padding: 0.4em 1em;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .experience-item ul {
+            list-style: none;
+            margin-top: 1em;
+        }
+
+        .experience-item li {
+            padding: 0.6em 0;
+            color: #555;
+            border-bottom: 1px solid #F0F0F0;
+            padding-left: 1.5em;
+            position: relative;
+        }
+
+        .experience-item li:last-child {
+            border-bottom: none;
+        }
+
+        .experience-item li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        /* Education Section */
+        .education-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2em;
         }
 
-        .timeline-item {
+        .education-item {
             background: white;
             padding: 2em;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            border-top: 4px solid var(--secondary-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+            transition: transform 0.3s ease;
         }
 
-        .timeline-item:hover {
+        .education-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         }
 
-        .timeline-item h3 {
+        .education-item h3 {
             color: var(--primary-color);
-            margin-bottom: 0.5em;
-            font-size: 1.3em;
+            font-size: 1.2em;
+            margin-bottom: 0.3em;
         }
 
-        .timeline-item .date {
+        .education-item .institution {
             color: var(--secondary-color);
             font-weight: 600;
-            font-size: 0.9em;
+            font-size: 0.95em;
             margin-bottom: 0.5em;
         }
 
-        .timeline-item p {
-            color: #666;
+        .education-item .completion-date {
+            font-size: 0.9em;
+            color: #999;
+            margin-bottom: 1em;
+        }
+
+        .education-item ul {
+            list-style: none;
             font-size: 0.95em;
         }
 
+        .education-item li {
+            padding: 0.4em 0;
+            color: #666;
+            padding-left: 1.2em;
+            position: relative;
+        }
+
+        .education-item li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
         /* Skills Section */
-        .skills-chart {
+        .skills-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2em;
         }
 
-        .skill-item {
+        .skill-category {
             background: white;
             padding: 2em;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            text-align: center;
             transition: transform 0.3s ease;
         }
 
-        .skill-item:hover {
+        .skill-category:hover {
             transform: translateY(-5px);
         }
 
-        .skill-item h3 {
+        .skill-category h3 {
             color: var(--primary-color);
-            margin-bottom: 1em;
+            font-size: 1.2em;
+            margin-bottom: 1.2em;
+            padding-bottom: 0.8em;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 0.6em 0;
+            color: #555;
+            font-size: 0.95em;
+            padding-left: 1.5em;
+            position: relative;
+        }
+
+        .skill-category li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
             font-size: 1.2em;
         }
 
-        .skill-item ul {
-            list-style: none;
-            text-align: left;
-        }
-
-        .skill-item li {
-            padding: 0.5em 0;
-            color: #666;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .skill-item li:last-child {
-            border-bottom: none;
-        }
-
-        .skill-item li:before {
-            content: "✓";
-            color: var(--secondary-color);
-            font-weight: bold;
-            margin-right: 0.5em;
-        }
-
-        /* Projects Section */
-        .project-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2em;
-        }
-
-        .project-item {
+        /* Entrepreneurship Section */
+        .journey-item {
             background: white;
+            padding: 2.5em;
             border-radius: 8px;
-            overflow: hidden;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--success-color);
+            margin-bottom: 2em;
+            transition: transform 0.3s ease;
         }
 
-        .project-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        .journey-item:hover {
+            transform: translateY(-3px);
         }
 
-        .project-item-header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
-            color: white;
-            padding: 2em;
-            text-align: center;
-        }
-
-        .project-item-header h3 {
+        .journey-item h3 {
+            color: var(--primary-color);
             font-size: 1.3em;
-            margin-bottom: 0.5em;
+            margin-bottom: 0.3em;
         }
 
-        .project-item-body {
-            padding: 2em;
-        }
-
-        .project-item-body p {
-            color: #666;
-            line-height: 1.8;
+        .journey-item .role {
+            color: var(--secondary-color);
+            font-weight: 600;
+            font-size: 0.95em;
             margin-bottom: 1em;
+        }
+
+        .journey-item ul {
+            list-style: none;
+        }
+
+        .journey-item li {
+            padding: 0.6em 0;
+            color: #555;
+            padding-left: 1.5em;
+            position: relative;
+        }
+
+        .journey-item li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
         }
 
         /* Contact Section */
@@ -284,11 +401,12 @@
             display: inline-block;
             background-color: var(--primary-color);
             color: white;
-            padding: 1em 2em;
+            padding: 1em 2.5em;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             transition: background-color 0.3s ease, transform 0.3s ease;
+            font-size: 0.95em;
         }
 
         .contact-links a:hover {
@@ -327,8 +445,17 @@
                 font-size: 1.8em;
             }
 
-            .timeline, .skills-chart, .project-gallery {
+            .experience-header {
+                flex-direction: column;
+            }
+
+            .skills-container, .education-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .header-stat {
+                display: block;
+                margin: 0.5em 0;
             }
         }
     </style>
@@ -337,10 +464,11 @@
     <!-- Navigation -->
     <nav>
         <ul>
-            <li><a href="#about">About</a></li>
+            <li><a href="#summary">Overview</a></li>
             <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
             <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
+            <li><a href="#journey">Journey</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -348,122 +476,215 @@
     <!-- Header -->
     <header>
         <h1>Sbongiseni Hlongwa</h1>
-        <p>Professional in Finance & Audit</p>
-        <div class="header-subtitle">Audit | Compliance | Corporate Tax</div>
+        <p>Audit & Risk Management Professional</p>
+        <div class="header-subtitle">Internal Audit | Risk Assessment | Compliance & Controls</div>
+        <div>
+            <span class="header-stat"><strong>4+ Years</strong> Audit Experience</span>
+            <span class="header-stat"><strong>Public Sector</strong> Expertise</span>
+            <span class="header-stat"><strong>CTA</strong> Qualified</span>
+        </div>
     </header>
 
     <div class="container">
-        <!-- About Section -->
-        <section id="about">
-            <h2>About Me</h2>
+        <!-- Professional Summary -->
+        <section id="summary">
+            <h2>Professional Overview</h2>
             <p>
-                I have a solid background in auditing processes, applicable regulations, and corporate tax filings, and I am dedicated to contributing effectively as a valuable team member. 
-                I can independently plan, execute, and complete audit projects promptly while ensuring compliance and accuracy in both auditing and corporate tax filing requirements. 
-                My strong analytical skills and attention to detail enable me to identify opportunities for process improvement and enhance overall efficiency. 
-                I am committed to maintaining the highest standards of professionalism and integrity in all my work, which I believe is essential for building trust and fostering collaboration within the team.
+                Accomplished audit professional with 4+ years of progressive experience in both external and internal audit environments. 
+                Demonstrated expertise across all audit lifecycle stages—from planning and risk assessment to execution and reporting. 
+                Proven ability to identify operational, financial, and compliance risks, evaluate control environments, and deliver actionable insights to senior management. 
+                Track record of supervising junior team members, driving accountability, and delivering high-quality audit outcomes. 
+                Skilled in translating complex risk landscapes into clear, strategic recommendations that strengthen organizational governance and risk maturity. 
+                Seeking opportunity to leverage audit expertise and technical acumen to advance enterprise risk management and organizational performance.
             </p>
         </section>
 
         <!-- Experience Section -->
         <section id="experience">
             <h2>Professional Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <h3>Audit Specialist</h3>
-                    <div class="date">2023 - Present</div>
-                    <p>Led comprehensive audit engagements, identified compliance gaps, and implemented process improvements resulting in enhanced operational efficiency.</p>
+            <div class="experience-container">
+                
+                <!-- Current Role -->
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3>Internal Audit Professional</h3>
+                            <div class="company">EThekwini Municipality, Durban</div>
+                        </div>
+                        <div class="duration">July 2024 – Present</div>
+                    </div>
+                    <ul>
+                        <li>Deliver integrated internal audit services across financial, operational, and compliance domains in alignment with PFMA, Treasury Regulations, GRAP, and King IV standards</li>
+                        <li>Lead risk assessment and audit planning initiatives aligned with IIA Standards and IPPF, incorporating emerging risk considerations</li>
+                        <li>Execute risk-based audit projects spanning performance, conformance, service delivery, and built-environment audits across municipal operations</li>
+                        <li>Evaluate internal control design and operating effectiveness, identifying control gaps and highlighting operational and financial risk exposures</li>
+                        <li>Maintain comprehensive working papers and audit evidence in compliance with IPPF standards, ensuring traceability and transparency</li>
+                        <li>Develop audit findings, risk observations, and management reports enabling informed Audit Committee oversight and risk monitoring</li>
+                        <li>Stay current with municipal regulations, public sector risk frameworks, and internal audit best practices to enhance organizational risk maturity</li>
+                    </ul>
                 </div>
-                <div class="timeline-item">
-                    <h3>Tax Compliance Officer</h3>
-                    <div class="date">2022 - 2023</div>
-                    <p>Managed corporate tax filings and ensured regulatory compliance across multiple jurisdictions with zero discrepancies.</p>
+
+                <!-- External Audit Articles -->
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3>External Audit Articles Trainee</h3>
+                            <div class="company">PwC, Durban</div>
+                        </div>
+                        <div class="duration">January 2017 – January 2020</div>
+                    </div>
+                    <ul>
+                        <li><strong>Planning & Risk Assessment:</strong> Conducted comprehensive risk assessments of client operations, financial systems, and internal controls; developed risk-focused audit plans; performed process walkthroughs on revenue, inventory, and financial reporting functions</li>
+                        <li><strong>Execution & Monitoring:</strong> Performed risk-based testing of financial and operational processes; evaluated control design and operating effectiveness; identified emerging risks and key risk indicators to optimize audit coverage</li>
+                        <li><strong>Reporting & Communication:</strong> Prepared audit documentation and working papers; supported development of audit findings and management reports; ensured IFRS compliance in financial disclosures</li>
+                        <li><strong>Tax & Compliance Support:</strong> Prepared corporate tax returns per SARS regulations; reviewed financial records for tax exposure; collaborated with clients on tax compliance and risk mitigation</li>
+                        <li>Collaborated with IT, tax, and specialist teams on integrated coverage of complex, high-risk audit areas</li>
+                    </ul>
                 </div>
-                <div class="timeline-item">
-                    <h3>Junior Auditor</h3>
-                    <div class="date">2021 - 2022</div>
-                    <p>Assisted in conducting internal and external audits, prepared audit reports, and documented findings and recommendations.</p>
+
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education">
+            <h2>Education & Professional Qualifications</h2>
+            <div class="education-grid">
+                
+                <div class="education-item">
+                    <h3>Software Engineering</h3>
+                    <div class="institution">PLP Africa</div>
+                    <div class="completion-date">Completed: September 2024</div>
+                    <ul>
+                        <li>Python Programming</li>
+                        <li>HTML & Web Development</li>
+                        <li>CSS Styling</li>
+                        <li>SQL Database Management</li>
+                    </ul>
                 </div>
+
+                <div class="education-item">
+                    <h3>CTA (Post-Graduate)</h3>
+                    <div class="institution">University of South Africa</div>
+                    <div class="completion-date">Completed: December 2016</div>
+                    <ul>
+                        <li>Applied Auditing</li>
+                        <li>Applied Financial Accounting</li>
+                        <li>Applied Management Accounting</li>
+                        <li>Advanced Tax & Compliance</li>
+                    </ul>
+                </div>
+
+                <div class="education-item">
+                    <h3>Bachelor of Accounting Sciences</h3>
+                    <div class="institution">University of South Africa</div>
+                    <div class="completion-date">Completed: December 2014</div>
+                    <ul>
+                        <li>Financial Reporting & GAAP</li>
+                        <li>Auditing & Control Testing</li>
+                        <li>Management Accounting</li>
+                        <li>Business Taxation</li>
+                    </ul>
+                </div>
+
             </div>
         </section>
 
         <!-- Skills Section -->
         <section id="skills">
-            <h2>Skills</h2>
-            <div class="skills-chart">
-                <div class="skill-item">
-                    <h3>Audit & Compliance</h3>
+            <h2>Core Competencies & Technical Skills</h2>
+            <div class="skills-container">
+                
+                <div class="skill-category">
+                    <h3>Audit & Risk Management</h3>
                     <ul>
-                        <li>Internal Auditing</li>
-                        <li>External Auditing</li>
-                        <li>Risk Assessment</li>
-                        <li>Compliance Management</li>
-                        <li>Control Testing</li>
+                        <li>Internal & External Audit</li>
+                        <li>Risk Assessment & Identification</li>
+                        <li>Control Evaluation & Testing</li>
+                        <li>Compliance Monitoring</li>
+                        <li>Risk Observation & Documentation</li>
+                        <li>Audit Planning & Execution</li>
                     </ul>
                 </div>
-                <div class="skill-item">
-                    <h3>Tax & Finance</h3>
+
+                <div class="skill-category">
+                    <h3>Financial & Compliance</h3>
                     <ul>
-                        <li>Corporate Tax Filing</li>
-                        <li>Tax Compliance</li>
-                        <li>Financial Analysis</li>
-                        <li>Budget Planning</li>
-                        <li>Financial Reporting</li>
+                        <li>Financial Analysis & Reporting</li>
+                        <li>IFRS, GAAP Compliance</li>
+                        <li>Tax Compliance (SARS, VAT, PAYE)</li>
+                        <li>Public Sector Standards (GRAP, MFMA)</li>
+                        <li>King IV Governance</li>
+                        <li>Treasury Regulations</li>
                     </ul>
                 </div>
-                <div class="skill-item">
-                    <h3>Technical & Tools</h3>
+
+                <div class="skill-category">
+                    <h3>Professional & Technical</h3>
                     <ul>
-                        <li>SAP & ERP Systems</li>
-                        <li>Excel & VBA</li>
-                        <li>ACL Analytics</li>
-                        <li>QuickBooks</li>
-                        <li>Microsoft Office Suite</li>
+                        <li>Stakeholder Communication</li>
+                        <li>Team Leadership & Mentoring</li>
+                        <li>Advanced Excel & Data Analysis</li>
+                        <li>SAP, SYSPRO ERP Systems</li>
+                        <li>PwC Aura, TeamMate Audit Tools</li>
+                        <li>Python, SQL, HTML, CSS</li>
                     </ul>
                 </div>
+
+                <div class="skill-category">
+                    <h3>Compliance Frameworks</h3>
+                    <ul>
+                        <li>IIA Standards & IPPF</li>
+                        <li>Public Finance Management Act (PFMA)</li>
+                        <li>Municipal Finance Management Act (MFMA)</li>
+                        <li>National Treasury Regulations</li>
+                        <li>Practice Advisories & Guides</li>
+                        <li>Organisational Risk Frameworks</li>
+                    </ul>
+                </div>
+
             </div>
         </section>
 
-        <!-- Projects Section -->
-        <section id="projects">
-            <h2>Projects</h2>
-            <div class="project-gallery">
-                <div class="project-item">
-                    <div class="project-item-header">
-                        <h3>Risk Assessment Framework</h3>
-                    </div>
-                    <div class="project-item-body">
-                        <p>Developed a comprehensive risk assessment framework for organizational compliance, identifying and mitigating key operational risks.</p>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <div class="project-item-header">
-                        <h3>Tax Optimization Strategy</h3>
-                    </div>
-                    <div class="project-item-body">
-                        <p>Implemented tax optimization strategies that reduced corporate tax liability by 15% while maintaining full regulatory compliance.</p>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <div class="project-item-header">
-                        <h3>Process Automation Initiative</h3>
-                    </div>
-                    <div class="project-item-body">
-                        <p>Automated routine audit and compliance processes, reducing manual work by 40% and improving accuracy and efficiency.</p>
-                    </div>
-                </div>
+        <!-- Entrepreneurial Journey -->
+        <section id="journey">
+            <h2>Entrepreneurial Journey & Diverse Experience</h2>
+            
+            <div class="journey-item">
+                <h3>Founder & Operator</h3>
+                <div class="role">Family Pot and Stove Business | Self-Employed (January 2021 – July 2024)</div>
+                <ul>
+                    <li>Built and scaled event catering logistics business providing gas stoves and large-capacity cookware (80–150L) to clients for weddings and community gatherings</li>
+                    <li>Managed end-to-end operations: budgeting, cash flow management, inventory control, logistics coordination, and client relationship management</li>
+                    <li>Demonstrated commercial acumen through cost control, operational efficiency, and reliable service delivery resulting in strong client retention</li>
+                    <li>Developed practical business management skills including planning, resource allocation, and problem-solving in dynamic, fast-paced environments</li>
+                    <li><strong>Key Learning:</strong> Combined business operations with audit expertise to develop comprehensive understanding of organizational risk and controls</li>
+                </ul>
             </div>
+
+            <div class="journey-item">
+                <h3>AI Training Specialist</h3>
+                <div class="role">Toloka (Freelance) | October 2023 – December 2023</div>
+                <ul>
+                    <li>Trained artificial intelligence models in natural language processing and response quality assessment</li>
+                    <li>Evaluated AI-generated content including essays, creative writing, and prompt responses against quality and relevance standards</li>
+                    <li>Provided detailed feedback on writing accuracy, coherence, and alignment with prompt requirements to improve AI model performance</li>
+                    <li>Contributed to advancement of AI technology while developing critical analytical and evaluation skills</li>
+                    <li><strong>Key Learning:</strong> Gained exposure to emerging technology landscape, enhancing digital literacy and readiness for evolving business environments</li>
+                </ul>
+            </div>
+
         </section>
 
         <!-- Contact Section -->
         <section id="contact">
-            <h2>Contact Me</h2>
-            <p>Let's discuss how I can contribute to your organization's success in audit, compliance, and financial management.</p>
+            <h2>Let's Connect</h2>
+            <p>I'm interested in audit, risk management, compliance, and strategic advisory opportunities where I can contribute to organizational governance and performance.</p>
             <div class="contact-links">
                 <a href="https://www.linkedin.com/in/sbohlongwa" target="_blank" aria-label="LinkedIn profile">
-                    LinkedIn Profile
+                    <i class="fas fa-linkedin"></i> LinkedIn Profile
                 </a>
-                <a href="mailto:your.email@example.com" aria-label="Send email">
-                    Send Email
+                <a href="mailto:sbongiseni.hlongwa@email.com" aria-label="Send email">
+                    <i class="fas fa-envelope"></i> Send Email
                 </a>
             </div>
         </section>
